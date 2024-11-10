@@ -1,0 +1,16 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+def du_dt(u,t):
+  dudt=u[1],np.exp(-t)-2*u[1]-2*u[0]
+  return dudt
+
+u0=[0,0]
+t=np.arange(0,10,0.01)
+u=odeint(du_dt,u0,t)
+
+plt.plot(t,u[:,0],label='x(t)')
+plt.plot(t,u[:,1],label='dx/dt')
+plt.legend()
+plt.show()
